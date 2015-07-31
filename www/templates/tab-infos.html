@@ -1,0 +1,36 @@
+<ion-view view-title="Informations générales">
+    <ion-content class="padding">
+        <label class="item item-input">
+            <input type="text" placeholder="Nom de l'activité">
+        </label>
+        <div class="list card">
+            <div class="item item-divider">Durée</div>
+            <label class="item item-input">
+                <span class="input-label">Nombre de jours</span>
+                <input type="number">
+            </label>
+        </div>
+        <div class="list card">
+            <div class="item item-divider">Participants</div>
+            <label class="item item-input">
+                <span class="input-label">Nombre de jeunes</span>
+                <input type="number" placeholder="0" ng-model="nb_jeunes"/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Nombre de chefs</span>
+                <input type="number" placeholder="0" ng-model="nb_chefs"/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Total</span>
+                <span ng-bind="total()">0</span>
+            </label>
+
+        </div>
+        <div class="list card">
+            <div class="item item-divider">Notes</div>
+            <label class="item item-input">
+                <input type="text">
+            </label>
+        </div>
+    </ion-content>
+</ion-view>
