@@ -1,12 +1,16 @@
 angular.module('budget.controllers', [])
 
 .controller('InfosCtrl', function($scope) {
-    $scope.nb_jeunes = 4;
-    $scope.nb_chefs = 0;
 
-    $scope.total = function (){
-        return $scope.nb_jeunes + $scope.nb_chefs;
-    };
+        $scope.data = {
+            'nb_jeunes' : 0,
+            'nb_chefs' : 0,
+            'somme' : 0
+        };
+
+        $scope.total = function(){
+            $scope.data.somme = $scope.data.nb_jeunes + $scope.data.nb_chefs;
+        };
 })
 
 .controller('BudgetCtrl', function($scope, Chats) {
