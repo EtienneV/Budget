@@ -36,11 +36,44 @@ angular.module('budget.controllers', [])
 
         $scope.budget = Budget;
 })
-/*
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+
+.controller('IntendanceCtrl', function($scope, $ionicPopup) {
+        $scope.data = {
+            'valeurJour': 6,
+            'valeurChoisie': 300
+        };
+
+
+        $scope.popupJour = function () {
+
+            var valeur = 12;
+
+            $scope.data.valeurJour = 75;
+
+            $ionicPopup.show({
+                template: '<input type="number" ng-model="valeur">',
+                title: 'Montant par jour et par personne',
+                subTitle: 'Environs 5,5 euros/jour/pers',
+                scope: $scope,
+                buttons: [
+                    {text: 'Annuler'},
+                    {
+                        text: '<b>Confirmer</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            if (!$scope.data.valeurJour) {
+                                //don't allow the user to close unless he enters anumber
+                                e.preventDefault();
+                            } else {
+                                $scope.data.valeurJour = valeur;
+                            }
+                        }
+                    }
+                ]
+            });
+        };
 })
-*/
+
 .controller('ResumeCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true

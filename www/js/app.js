@@ -59,17 +59,17 @@ angular.module('budget', ['ionic', 'budget.controllers', 'budget.services'])
         }
       }
     })
-/*
-    .state('tab.chat-detail', {
-      url: '/budget/:chatId',
+
+    .state('tab.intendance', {
+      url: '/budget/intendance',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-budget': {
+          templateUrl: 'templates/intendance.html',
+          controller: 'IntendanceCtrl'
         }
       }
     })
-*/
+
   .state('tab.resume', {
     url: '/resume',
     views: {
