@@ -14,15 +14,15 @@
             <div class="item item-divider">Participants</div>
             <label class="item item-input">
                 <span class="input-label">Nombre de jeunes</span>
-                <input type="number" placeholder="0" ng-model="data.nb_jeunes" ng-change="total()"/>
+                <input type="number" placeholder="0" ng-model="data.nb_jeunes"/>
             </label>
             <label class="item item-input">
                 <span class="input-label">Nombre de chefs</span>
-                <input type="number" placeholder="0" ng-model="data.nb_chefs" ng-change="total()"/>
+                <input type="number" placeholder="0" ng-model="data.nb_chefs"/>
             </label>
             <label class="item item-input">
                 <span class="input-label">Total</span>
-                <span ng-bind="data.somme"></span>
+                <span ng-bind="data.calculNbParticipants()"></span>
             </label>
 
         </div>

@@ -4,12 +4,11 @@ angular.module('budget.controllers', [])
 
         $scope.data = {
             'nb_jeunes' : 0,
-            'nb_chefs' : 0,
-            'somme' : 0
+            'nb_chefs' : 0
         };
 
-        $scope.total = function(){
-            $scope.data.somme = $scope.data.nb_jeunes + $scope.data.nb_chefs;
+        $scope.data.calculNbParticipants = function(){
+            return $scope.data.nb_jeunes + $scope.data.nb_chefs;
         };
 })
 
