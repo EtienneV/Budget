@@ -61,46 +61,46 @@ angular.module('budget.services', [])
             id: 0,
             nom: 'Intendance',
             page: 'intendance',
-            montant: 10
+            montant: Intendance.getTotal
         },{
             id: 1,
             nom: 'Hebergement',
             page: 'hebergement',
-            montant: 20
+            montant: Intendance.getTotal
         },{
             id: 2,
             nom: 'Frais medicaux',
             page: 'medic',
-            montant: 30
+            montant: Intendance.getTotal
         },{
             id: 3,
             nom: 'Frais pedagogiques',
             page: 'peda',
-            montant: 40
+            montant: Intendance.getTotal
         },{
             id: 4,
             nom: 'Activites',
             page: 'activites',
-            montant: 50
+            montant: Intendance.getTotal
         },{
             id: 5,
             nom: '5eme des chefs',
             page: 'chefs',
-            montant: 60
+            montant: Intendance.getTotal
         },{
             id: 6,
             nom: 'Transports',
             page: 'transports',
-            montant: 70
+            montant: Intendance.getTotal
         },{
             id: 7,
             nom: 'Autres',
             page: 'autres',
-            montant: 80
+            montant: Intendance.getTotal
         }];
 
         var getMontant = function(id){ // Récupère le montant d'une ligne de compta
-            return budget[id].montant;
+            return budget[id].montant();
         };
 
         var getTotal = function(){

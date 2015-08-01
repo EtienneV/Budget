@@ -105,8 +105,7 @@ angular.module('budget.controllers', [])
 
         $scope.data.calculIntendance = function(){
             return Intendance.getTotal();
-        }
-
+        };
 
 })
 
