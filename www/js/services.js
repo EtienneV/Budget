@@ -1,5 +1,60 @@
 angular.module('budget.services', [])
 
+    .factory('Activite', function() {
+        var activite = {
+            nom : '',
+            duree : 0,
+            participants : {
+                nbjeunes : 0,
+                nbchefs : 0,
+                nbtotal : 0
+            },
+            notes : ''
+        };
+
+        function calculNbParticipants(){
+            activite.participants.nbtotal = activite.participants.nbchefs + activite.participants.nbjeunes;
+        }
+
+        return {
+            setNom : function(nom){
+                activite.nom = nom;
+            },
+            getNom : function(){
+                return activite.nom;
+            },
+            setDuree : function(duree){
+                activite.duree = duree;
+            },
+            getDuree : function(){
+                return activite.duree;
+            },
+            setNbJeunes : function(nbjeunes){
+                activite.participants.nbjeunes = nbjeunes;
+                calculNbParticipants();
+            },
+            getNbJeunes : function(){
+                return activite.participants.nbjeunes;
+            },
+            setNbChefs : function(nbchefs){
+                activite.participants.nbchefs = nbchefs;
+                calculNbParticipants();
+            },
+            getNbChefs : function(){
+                return activite.participants.nbchefs;
+            },
+            getNbTotal : function(){
+                return activite.participants.nbtotal;
+            },
+            setNotes : function(notes){
+                activite.notes = notes;
+            },
+            getNotes : function(){
+                return activite.notes;
+            }
+        };
+    })
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

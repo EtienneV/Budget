@@ -1,14 +1,27 @@
 angular.module('budget.controllers', [])
 
-.controller('InfosCtrl', function($scope) {
+.controller('InfosCtrl', function($scope, Activite) {
+
+        $scope.activite = Activite;
 
         $scope.data = {
+            'nom' : '',
+            'duree' : '',
             'nb_jeunes' : '',
-            'nb_chefs' : ''
+            'nb_chefs' : '',
+            'notes' : ''
         };
 
-        $scope.data.calculNbParticipants = function(){
-            return $scope.data.nb_jeunes + $scope.data.nb_chefs;
+        $scope.data.rafraichir = function(){
+            $scope.activite.setNom($scope.data.nom);
+            $scope.activite.setDuree($scope.data.duree);
+            $scope.activite.setNbJeunes($scope.data.nb_jeunes);
+            $scope.activite.setNbChefs($scope.data.nb_chefs);
+        };
+
+        $scope.data.getNom = function(){
+            if($scope.activite.getNom() == '') return 'Nouvelle activite';
+            else return $scope.activite.getNom();
         };
 })
 

@@ -1,37 +1,38 @@
-<ion-view view-title="Informations générales">
+<ion-view>
+    <ion-nav-title ng-bind="data.getNom()"></ion-nav-title>
     <ion-content>
         <label class="item item-input item-floating-label">
-            <span class="input-label">Nom de l'activité</span>
-            <input type="text" placeholder="Nom de l'activité">
+            <span class="input-label"></span>
+            <input type="text" placeholder="Nom de l'activité" ng-model="data.nom" ng-change="data.rafraichir()">
         </label>
         <div class="list card">
             <div class="item item-divider">Durée</div>
             <label class="item item-input">
                 <span class="input-label">Nombre de jours</span>
-                <input type="number">
+                <input type="number" placeholder="0" ng-model="data.duree">
             </label>
         </div>
         <div class="list card">
             <div class="item item-divider">Participants</div>
             <label class="item item-input">
                 <span class="input-label">Nombre de jeunes</span>
-                <input type="number" placeholder="0" ng-model="data.nb_jeunes"/>
+                <input type="number" placeholder="0" ng-model="data.nb_jeunes" ng-change="data.rafraichir()"/>
             </label>
             <label class="item item-input">
                 <span class="input-label">Nombre de chefs</span>
-                <input type="number" placeholder="0" ng-model="data.nb_chefs"/>
+                <input type="number" placeholder="0" ng-model="data.nb_chefs" ng-change="data.rafraichir()"/>
             </label>
             <label class="item item-input">
-                <span class="input-label">Total</span>
-                <span ng-bind="data.calculNbParticipants()"></span>
+                <span class="input-label">Total des participants : </span>
+                <span ng-bind="activite.getNbTotal()"></span>
             </label>
 
         </div>
-        <div class="list card">
+        <!--<div class="list card">
             <div class="item item-divider">Notes</div>
             <label class="item item-input">
-                <textarea style="min-height: 80px"></textarea>
+                <textarea style="min-height: 80px" ng-model="data.notes"></textarea>
             </label>
-        </div>
+        </div>-->
     </ion-content>
 </ion-view>
