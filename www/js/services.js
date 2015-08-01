@@ -55,6 +55,75 @@ angular.module('budget.services', [])
         };
     })
 
+    .factory('Budget', function(Activite) {
+
+        var budget = [{
+            id: 0,
+            nom: 'Intendance',
+            page: 'intendance',
+            montant: 10
+        },{
+            id: 1,
+            nom: 'Hebergement',
+            page: 'hebergement',
+            montant: 20
+        },{
+            id: 2,
+            nom: 'Frais medicaux',
+            page: 'medic',
+            montant: 30
+        },{
+            id: 3,
+            nom: 'Frais pedagogiques',
+            page: 'peda',
+            montant: 40
+        },{
+            id: 4,
+            nom: 'Activites',
+            page: 'activites',
+            montant: 50
+        },{
+            id: 5,
+            nom: '5eme des chefs',
+            page: 'chefs',
+            montant: 60
+        },{
+            id: 6,
+            nom: 'Transports',
+            page: 'transports',
+            montant: 70
+        },{
+            id: 7,
+            nom: 'Autres',
+            page: 'autres',
+            montant: 80
+        }];
+
+        var getMontant = function(id){ // Récupère le montant d'une ligne de compta
+            return budget[id].montant;
+        };
+
+        var getTotal = function(){
+            var total = 0;
+            for(var i in budget)
+            {
+                total += getMontant(budget[i].id);
+            }
+            return total;
+        };
+
+        return {
+            getBudget: function(){
+                return budget;
+            },
+            getMontant: getMontant,
+            getTotal : getTotal,
+            getCoutJeune: function(){
+                return getTotal() / Activite.getNbJeunes();
+            }
+        };
+    })
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

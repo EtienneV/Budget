@@ -1,15 +1,19 @@
-<ion-view view-title="Budget">
+<ion-view>
+    <ion-nav-title ng-bind="data.getNom()"></ion-nav-title>
     <ion-content>
         <ion-list>
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/budget/{{chat.id}}">
-                <img ng-src="{{chat.face}}">
-                <h2>{{chat.name}}</h2>
-                <p>{{chat.lastText}}</p>
-                <i class="icon ion-chevron-right icon-accessory"></i>
-
-                <ion-option-button class="button-assertive" ng-click="remove(chat)">
-                    Delete
-                </ion-option-button>
+            <ion-item ng-repeat="ligne in budget.getBudget()" type="item-text-wrap" href="#/tab/budget/{{ligne.page}}">
+                <h2>{{ligne.nom}}</h2>
+                <p>{{budget.getMontant(ligne.id)}}</p>
+            </ion-item>
+            <div class="item item-divider">Totaux</div>
+            <ion-item>
+                <h2>Cout total</h2>
+                <p ng-bind="budget.getTotal()"></p>
+            </ion-item>
+            <ion-item>
+                <h2>Cout par jeune</h2>
+                <p ng-bind="budget.getCoutJeune()"></p>
             </ion-item>
         </ion-list>
     </ion-content>
