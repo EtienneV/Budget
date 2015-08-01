@@ -59,9 +59,9 @@ angular.module('budget', ['ionic', 'budget.controllers', 'budget.services'])
         }
       }
     })
-      /*
+/*
     .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+      url: '/budget/:chatId',
       views: {
         'tab-chats': {
           templateUrl: 'templates/chat-detail.html',
