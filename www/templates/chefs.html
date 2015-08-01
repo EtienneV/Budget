@@ -1,13 +1,13 @@
-<ion-view view-title="Intendance">
+<ion-view view-title="5eme des chefs">
     <ion-content class="padding">
-        <h3>Intendance</h3>
+        <h3>5eme des chefs</h3>
 
-        <ion-radio ng-model="data.choice" ng-value="'A'" ng-click="popupJour()">{{data.valeurJour}}€/jour/personne</ion-radio>
+        <ion-radio ng-model="data.choice" ng-value="'A'" ng-click="popupJour()">{{data.valeurJour}}€/jour/chef</ion-radio>
         <ion-radio ng-model="data.choice" ng-value="'B'" ng-click="popupChoisi()">{{data.valeurChoisie}}€</ion-radio>
 
         <ul class="list">
             <li class="item">
-                <h2>Total : {{data.calculIntendance()}}</h2>
+                <h2>Total : {{data.calculChefs()}}</h2>
             </li>
         </ul>
     </ion-content>

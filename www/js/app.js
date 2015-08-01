@@ -70,6 +70,46 @@ angular.module('budget', ['ionic', 'budget.controllers', 'budget.services'])
       }
     })
 
+      .state('tab.hebergement', {
+        url: '/budget/hebergement',
+        views: {
+          'tab-budget': {
+            templateUrl: 'templates/hebergement.html',
+            controller: 'HebergementCtrl'
+          }
+        }
+      })
+
+      .state('tab.medic', {
+        url: '/budget/medic',
+        views: {
+          'tab-budget': {
+            templateUrl: 'templates/medic.html',
+            controller: 'MedicCtrl'
+          }
+        }
+      })
+
+      .state('tab.peda', {
+          url: '/budget/peda',
+          views: {
+              'tab-budget': {
+                  templateUrl: 'templates/peda.html',
+                  controller: 'PedaCtrl'
+              }
+          }
+      })
+
+      .state('tab.chefs', {
+          url: '/budget/chefs',
+          views: {
+              'tab-budget': {
+                  templateUrl: 'templates/chefs.html',
+                  controller: 'ChefsCtrl'
+              }
+          }
+      })
+
   .state('tab.resume', {
     url: '/resume',
     views: {

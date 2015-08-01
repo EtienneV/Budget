@@ -55,7 +55,7 @@ angular.module('budget.services', [])
         };
     })
 
-    .factory('Budget', function(Activite, Intendance) {
+    .factory('Budget', function(Activite, Intendance, Hebergement, Medic, Peda, Chefs) {
 
         var budget = [{
             id: 0,
@@ -66,17 +66,17 @@ angular.module('budget.services', [])
             id: 1,
             nom: 'Hebergement',
             page: 'hebergement',
-            montant: Intendance.getTotal
+            montant: Hebergement.getTotal
         },{
             id: 2,
             nom: 'Frais medicaux',
             page: 'medic',
-            montant: Intendance.getTotal
+            montant: Medic.getTotal
         },{
             id: 3,
             nom: 'Frais pedagogiques',
             page: 'peda',
-            montant: Intendance.getTotal
+            montant: Peda.getTotal
         },{
             id: 4,
             nom: 'Activites',
@@ -86,7 +86,7 @@ angular.module('budget.services', [])
             id: 5,
             nom: '5eme des chefs',
             page: 'chefs',
-            montant: Intendance.getTotal
+            montant: Chefs.getTotal
         },{
             id: 6,
             nom: 'Transports',
@@ -154,6 +154,178 @@ angular.module('budget.services', [])
                 if(methode == 'A')
                 {
                     return montant.jour * Activite.getNbTotal() * Activite.getDuree();
+                }
+                else if(methode == 'B')
+                {
+                    return montant.choisi;
+                }
+                else
+                {
+                    return 'Erreur';
+                }
+            }
+        };
+    })
+
+    .factory('Hebergement', function(Activite) {
+        var methode = 'A';
+        var montant = {
+            jour: 1,
+            choisi: 0
+        };
+
+        return {
+            setMethode: function(m){
+                methode = m;
+            },
+            getMethode: function(){
+                return methode;
+            },
+            setMontantJour: function(m){
+                montant.jour = m;
+            },
+            getMontantjour: function(){
+                return montant.jour;
+            },
+            setMontantChoisi: function(m){
+                montant.choisi = m;
+            },
+            getMontantChoisi: function(){
+                return montant.choisi;
+            },
+            getTotal: function(){
+                if(methode == 'A')
+                {
+                    return montant.jour * Activite.getNbTotal() * Activite.getDuree();
+                }
+                else if(methode == 'B')
+                {
+                    return montant.choisi;
+                }
+                else
+                {
+                    return 'Erreur';
+                }
+            }
+        };
+    })
+
+    .factory('Medic', function(Activite) {
+        var methode = 'A';
+        var montant = {
+            jour: 1,
+            choisi: 0
+        };
+
+        return {
+            setMethode: function(m){
+                methode = m;
+            },
+            getMethode: function(){
+                return methode;
+            },
+            setMontantJour: function(m){
+                montant.jour = m;
+            },
+            getMontantjour: function(){
+                return montant.jour;
+            },
+            setMontantChoisi: function(m){
+                montant.choisi = m;
+            },
+            getMontantChoisi: function(){
+                return montant.choisi;
+            },
+            getTotal: function(){
+                if(methode == 'A')
+                {
+                    return montant.jour * Activite.getNbTotal() * Activite.getDuree();
+                }
+                else if(methode == 'B')
+                {
+                    return montant.choisi;
+                }
+                else
+                {
+                    return 'Erreur';
+                }
+            }
+        };
+    })
+
+    .factory('Peda', function(Activite) {
+        var methode = 'A';
+        var montant = {
+            jour: 1,
+            choisi: 0
+        };
+
+        return {
+            setMethode: function(m){
+                methode = m;
+            },
+            getMethode: function(){
+                return methode;
+            },
+            setMontantJour: function(m){
+                montant.jour = m;
+            },
+            getMontantjour: function(){
+                return montant.jour;
+            },
+            setMontantChoisi: function(m){
+                montant.choisi = m;
+            },
+            getMontantChoisi: function(){
+                return montant.choisi;
+            },
+            getTotal: function(){
+                if(methode == 'A')
+                {
+                    return montant.jour * Activite.getNbTotal() * Activite.getDuree();
+                }
+                else if(methode == 'B')
+                {
+                    return montant.choisi;
+                }
+                else
+                {
+                    return 'Erreur';
+                }
+            }
+        };
+    })
+
+    .factory('Chefs', function(Activite) {
+        var methode = 'A';
+        var montant = {
+            jour: 1,
+            choisi: 0
+        };
+
+        return {
+            setMethode: function(m){
+                methode = m;
+            },
+            getMethode: function(){
+                return methode;
+            },
+            setMontantJour: function(m){
+                montant.jour = m;
+            },
+            getMontantjour: function(){
+                return montant.jour;
+            },
+            setMontantChoisi: function(m){
+                montant.choisi = m;
+            },
+            getMontantChoisi: function(){
+                return montant.choisi;
+            },
+            getTotal: function(){
+                if(methode == 'A')
+                {
+                    return montant.jour * Activite.getNbChefs() * Activite.getDuree();
                 }
                 else if(methode == 'B')
                 {
