@@ -3,8 +3,8 @@ angular.module('budget.controllers', [])
 .controller('InfosCtrl', function($scope) {
 
         $scope.data = {
-            'nb_jeunes' : 0,
-            'nb_chefs' : 0
+            'nb_jeunes' : '',
+            'nb_chefs' : ''
         };
 
         $scope.data.calculNbParticipants = function(){
