@@ -37,21 +37,20 @@ angular.module('budget.controllers', [])
         $scope.budget = Budget;
 })
 
-.controller('IntendanceCtrl', function($scope, $ionicPopup) {
+.controller('IntendanceCtrl', function($scope, $ionicPopup, Activite, Intendance) {
         $scope.data = {
-            'valeurJour': 6,
-            'valeurChoisie': 300
+            'valeurJour': Intendance.getMontantjour(),
+            'valeurChoisie': Intendance.getMontantChoisi(),
+            'choice': Intendance.getMethode()
         };
 
 
         $scope.popupJour = function () {
 
-            var valeur = 12;
-
-            $scope.data.valeurJour = 75;
+            $scope.data.valeurJTemp = Intendance.getMontantjour();
 
             $ionicPopup.show({
-                template: '<input type="number" ng-model="valeur">',
+                template: '<input type="number" ng-model="data.valeurJTemp">',
                 title: 'Montant par jour et par personne',
                 subTitle: 'Environs 5,5 euros/jour/pers',
                 scope: $scope,
@@ -61,17 +60,54 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if (!$scope.data.valeurJour) {
+                            if ($scope.data.valeurJTemp == '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
-                                $scope.data.valeurJour = valeur;
+                                Intendance.setMontantJour($scope.data.valeurJTemp);
+                                $scope.data.valeurJour = Intendance.getMontantjour();
+                                Intendance.setMethode('A');
                             }
                         }
                     }
                 ]
             });
         };
+
+        $scope.popupChoisi = function () {
+
+            $scope.data.valeurCTemp = Intendance.getMontantChoisi();
+
+            $ionicPopup.show({
+                template: '<input type="number" ng-model="data.valeurCTemp">',
+                title: 'Choisir un montant',
+
+                scope: $scope,
+                buttons: [
+                    {text: 'Annuler'},
+                    {
+                        text: '<b>Confirmer</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            if ($scope.data.valeurCTemp == '') {
+                                //don't allow the user to close unless he enters anumber
+                                e.preventDefault();
+                            } else {
+                                Intendance.setMontantChoisi($scope.data.valeurCTemp);
+                                $scope.data.valeurChoisie = Intendance.getMontantChoisi();
+                                Intendance.setMethode('B');
+                            }
+                        }
+                    }
+                ]
+            });
+        };
+
+        $scope.data.calculIntendance = function(){
+            return Intendance.getTotal();
+        }
+
+
 })
 
 .controller('ResumeCtrl', function($scope) {
