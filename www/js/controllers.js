@@ -423,6 +423,66 @@ angular.module('budget.controllers', [])
             return Chefs.getTotal();
         };
     })
+
+    .controller('TransportsCtrl', function($scope, Activite, Transports) {
+
+        $scope.transports = Transports;
+
+        $scope.data = {
+            nb_km: $scope.transports.getKm(),
+            peage: $scope.transports.getPeage(),
+            carburant: $scope.transports.getCarburant(),
+            conso: $scope.transports.getConso(),
+            nb_aller: $scope.transports.getNbAller(),
+            nb_retour: $scope.transports.getNbRetour(),
+            nb_chefs: $scope.transports.getNbChefs(),
+            rembourse: $scope.transports.getRembourse()
+        };
+
+        $scope.data.rafraichirInfos = function(){
+            $scope.transports.setKm($scope.data.nb_km);
+            $scope.transports.setPeage($scope.data.peage);
+            $scope.transports.setCarburant($scope.data.carburant);
+            $scope.transports.setConso($scope.data.conso);
+
+            $scope.data.rembourse = $scope.transports.coutAllerRetour();
+            $scope.transports.setRembourse($scope.data.rembourse);
+        };
+
+        $scope.data.rafraichirVoitures = function(){
+            $scope.transports.setNbAller($scope.data.nb_aller);
+            $scope.transports.setNbRetour($scope.data.nb_retour);
+            $scope.transports.setNbChefs($scope.data.nb_chefs);
+        };
+
+        $scope.data.rafraichirRembourse = function(){
+            $scope.transports.setRembourse($scope.data.rembourse);
+        };
+    })
+
+    .controller('AutresCoutsCtrl', function($scope, AutresCouts) {
+        $scope.autres = AutresCouts;
+
+        $scope.data = {};
+
+        $scope.data.tab_autres = $scope.autres.getAutres();
+
+        $scope.data.alert = function(){
+            alert("hello");
+        };
+
+        $scope.getScope = function () {
+            return $scope;
+        };
+
+        $scope.data.supprimer = function(id) {
+            //$scope.autres.supprimer(id);
+            $scope.data.tab_autres.splice(0, id);
+        };
+
+        $scope.data.rafraichirCout = function(id){
+        };
+    })
     
 .controller('ResumeCtrl', function($scope) {
   $scope.settings = {

@@ -1,0 +1,68 @@
+<ion-view view-title="Transports">
+    <ion-content class="padding">
+        <h3>Covoiturage</h3>
+
+        <div class="list card">
+            <div class="item item-divider">Infos aller-retour</div>
+
+            <label class="item item-input">
+                <span class="input-label">Km aller-retour</span>
+                <input type="number" ng-model="data.nb_km" ng-change="data.rafraichirInfos()"/>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Prix péage aller-retour</span>
+                <input type="number" ng-model="data.peage" ng-change="data.rafraichirInfos()"/>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Prix du litre de carburant (€/l)</span>
+                <input type="number" ng-model="data.carburant" ng-change="data.rafraichirInfos()"/>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Consommation (l/100km)</span>
+                <input type="number" ng-model="data.conso" ng-change="data.rafraichirInfos()"/>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Coût d'un aller-retour : </span>
+                <span ng-bind="transports.coutAllerRetour()"></span>
+            </label>
+
+            <div class="item item-divider">Voitures</div>
+
+            <label class="item item-input">
+                <span class="input-label">Nombre de voitures aller</span>
+                <input type="number" ng-model="data.nb_aller" ng-change="data.rafraichirVoitures()"/>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Nombre de voitures retour</span>
+                <input type="number" ng-model="data.nb_retour" ng-change="data.rafraichirVoitures()"/>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Voitures restant sur place (chefs)</span>
+                <input type="number" ng-model="data.nb_chefs" ng-change="data.rafraichirVoitures()"/>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Nombre d'allers-retour : </span>
+                <span ng-bind="transports.nbAllerRetour()"></span>
+            </label>
+
+            <div class="item item-divider">Remboursement</div>
+
+            <label class="item item-input">
+                <span class="input-label">Prix remboursé par aller-retour</span>
+                <input type="number" ng-model="data.rembourse" ng-change="data.rafraichirRembourse()"/>
+            </label>
+
+            <div class="item item-divider">Coût total : {{transports.coutCovoiturage()}}€</div>
+        </div>
+
+
+
+    </ion-content>
+</ion-view>

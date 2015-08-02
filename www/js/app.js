@@ -120,6 +120,26 @@ angular.module('budget', ['ionic', 'budget.controllers', 'budget.services'])
           }
       })
 
+      .state('tab.transports', {
+        url: '/budget/transports',
+        views: {
+          'tab-budget': {
+            templateUrl: 'templates/transports.html',
+            controller: 'TransportsCtrl'
+          }
+        }
+      })
+
+      .state('tab.autres_couts', {
+          url: '/budget/autres_couts',
+          views: {
+              'tab-budget': {
+                  templateUrl: 'templates/autres_couts.html',
+                  controller: 'AutresCoutsCtrl'
+              }
+          }
+      })
+
   .state('tab.resume', {
     url: '/resume',
     views: {

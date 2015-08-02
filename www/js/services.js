@@ -55,7 +55,7 @@ angular.module('budget.services', [])
         };
     })
 
-    .factory('Budget', function(Activite, Intendance, Hebergement, Medic, Peda, Activites, Chefs) {
+    .factory('Budget', function(Activite, Intendance, Hebergement, Medic, Peda, Activites, Chefs, Transports, AutresCouts) {
 
         var budget = [{
             id: 0,
@@ -91,12 +91,12 @@ angular.module('budget.services', [])
             id: 6,
             nom: 'Transports',
             page: 'transports',
-            montant: Intendance.getTotal
+            montant: Transports.coutCovoiturage
         },{
             id: 7,
             nom: 'Autres',
-            page: 'autres',
-            montant: Intendance.getTotal
+            page: 'autres_couts',
+            montant: AutresCouts.getTotal
         }];
 
         var getMontant = function(id){ // Récupère le montant d'une ligne de compta
@@ -168,7 +168,7 @@ angular.module('budget.services', [])
     })
 
     .factory('Hebergement', function(Activite) {
-        var methode = 'A';
+        var methode = 'B';
         var montant = {
             jour: 1,
             choisi: 0
@@ -254,7 +254,7 @@ angular.module('budget.services', [])
     })
 
     .factory('Peda', function(Activite) {
-        var methode = 'A';
+        var methode = 'B';
         var montant = {
             jour: 1,
             choisi: 0
@@ -297,7 +297,7 @@ angular.module('budget.services', [])
     })
 
     .factory('Activites', function(Activite) {
-        var methode = 'A';
+        var methode = 'B';
         var montant = {
             jour: 1,
             choisi: 0
@@ -381,6 +381,143 @@ angular.module('budget.services', [])
             }
         };
     })
+
+    .factory('Transports', function(Activite) {
+        var covoiturage = {
+            nb_km: 0,
+            peage: 0,
+            carburant: 1.3,
+            conso: 8,
+            nb_aller: 0,
+            nb_retour: 0,
+            nb_chefs: 0,
+            rembourse: 0
+        };
+
+        var coutAllerRetour = function(){
+            return (covoiturage.nb_km * covoiturage.carburant * covoiturage.conso) / 100 + covoiturage.peage;
+        };
+
+        var nbAllerRetourParents = function(){
+            return covoiturage.nb_aller + covoiturage.nb_retour;
+        };
+
+        var nbAllerRetour = function(){
+            return covoiturage.nb_aller + covoiturage.nb_retour + covoiturage.nb_chefs;
+        };
+
+        var coutCovoiturage = function(){
+            return nbAllerRetourParents() * covoiturage.rembourse + covoiturage.nb_chefs * coutAllerRetour();
+        };
+
+        return {
+            setKm : function(km){
+                covoiturage.nb_km = km;
+            },
+            getKm : function(){
+                return covoiturage.nb_km;
+            },
+            setPeage : function(peage){
+                covoiturage.peage = peage;
+            },
+            getPeage : function(){
+                return covoiturage.peage;
+            },
+            setCarburant : function(carburant){
+                covoiturage.carburant = carburant;
+            },
+            getCarburant : function(){
+                return covoiturage.carburant;
+            },
+            setConso : function(conso){
+                covoiturage.conso = conso;
+            },
+            getConso : function(){
+                return covoiturage.conso;
+            },
+            coutAllerRetour : function(){
+                return coutAllerRetour();
+            },
+            setNbAller : function(nb){
+                covoiturage.nb_aller = nb;
+            },
+            getNbAller : function(){
+                return covoiturage.nb_aller;
+            },
+            setNbRetour : function(nb){
+                covoiturage.nb_retour = nb;
+            },
+            getNbRetour : function(){
+                return covoiturage.nb_retour;
+            },
+            setNbChefs : function(nb){
+                covoiturage.nb_chefs = nb;
+            },
+            getNbChefs : function(){
+                return covoiturage.nb_chefs;
+            },
+            nbAllerRetour: function(){
+                return nbAllerRetour();
+            },
+            setRembourse : function(rembourse){
+                covoiturage.rembourse = rembourse;
+            },
+            getRembourse : function(){
+                return covoiturage.rembourse;
+            },
+            coutCovoiturage: function(){
+                return coutCovoiturage();
+            }
+        };
+    })
+
+    .factory('AutresCouts', function() {
+        var autres = [{
+            id: 0,
+            nom: 'Materiel',
+            cout: 0
+        },{
+            id: 1,
+            nom: 'Location voiture',
+            cout: 0
+        },{
+            id: 2,
+            nom: 'Luges',
+            cout: 0
+        }];
+
+        var getTotal = function(){
+            var total = 0;
+            for(var i in autres)
+            {
+                total += autres[i].cout;
+            }
+            return total;
+        };
+
+        var supprimer = function(id){
+            autres.splice(0, id);
+        };
+
+        return {
+            getAutres: function(){
+                return autres;
+            },
+            setCout: function(id, cout){
+                autres[id].cout = cout;
+            },
+            getCout: function(id){
+                return autres[id].cout;
+            },
+            getTotal: function(){
+                return getTotal();
+            },
+            supprimer: function(id){
+                supprimer(id);
+            }
+        };
+    })
+
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
