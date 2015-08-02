@@ -1,0 +1,14 @@
+<ion-view view-title="Activites">
+    <ion-content class="padding">
+        <h3>Visites et Activites</h3>
+
+        <ion-radio ng-model="data.choice" ng-value="'A'" ng-click="popupJour()">{{data.valeurJour}}€/participant</ion-radio>
+        <ion-radio ng-model="data.choice" ng-value="'B'" ng-click="popupChoisi()">{{data.valeurChoisie}}€</ion-radio>
+
+        <ul class="list">
+            <li class="item">
+                <h2>Total : {{data.calculActivites()}}</h2>
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>

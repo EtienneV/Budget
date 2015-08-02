@@ -55,7 +55,7 @@ angular.module('budget.services', [])
         };
     })
 
-    .factory('Budget', function(Activite, Intendance, Hebergement, Medic, Peda, Chefs) {
+    .factory('Budget', function(Activite, Intendance, Hebergement, Medic, Peda, Activites, Chefs) {
 
         var budget = [{
             id: 0,
@@ -81,7 +81,7 @@ angular.module('budget.services', [])
             id: 4,
             nom: 'Activites',
             page: 'activites',
-            montant: Intendance.getTotal
+            montant: Activites.getTotal
         },{
             id: 5,
             nom: '5eme des chefs',
@@ -283,6 +283,49 @@ angular.module('budget.services', [])
                 if(methode == 'A')
                 {
                     return montant.jour * Activite.getNbTotal() * Activite.getDuree();
+                }
+                else if(methode == 'B')
+                {
+                    return montant.choisi;
+                }
+                else
+                {
+                    return 'Erreur';
+                }
+            }
+        };
+    })
+
+    .factory('Activites', function(Activite) {
+        var methode = 'A';
+        var montant = {
+            jour: 1,
+            choisi: 0
+        };
+
+        return {
+            setMethode: function(m){
+                methode = m;
+            },
+            getMethode: function(){
+                return methode;
+            },
+            setMontantJour: function(m){
+                montant.jour = m;
+            },
+            getMontantjour: function(){
+                return montant.jour;
+            },
+            setMontantChoisi: function(m){
+                montant.choisi = m;
+            },
+            getMontantChoisi: function(){
+                return montant.choisi;
+            },
+            getTotal: function(){
+                if(methode == 'A')
+                {
+                    return montant.jour * Activite.getNbTotal();
                 }
                 else if(methode == 'B')
                 {

@@ -100,6 +100,16 @@ angular.module('budget', ['ionic', 'budget.controllers', 'budget.services'])
           }
       })
 
+      .state('tab.activites', {
+        url: '/budget/activites',
+        views: {
+          'tab-budget': {
+            templateUrl: 'templates/activites.html',
+            controller: 'ActivitesCtrl'
+          }
+        }
+      })
+
       .state('tab.chefs', {
           url: '/budget/chefs',
           views: {

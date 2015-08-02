@@ -60,7 +60,7 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if ($scope.data.valeurJTemp == '') {
+                            if ($scope.data.valeurJTemp === '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
@@ -89,7 +89,7 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if ($scope.data.valeurCTemp == '') {
+                            if ($scope.data.valeurCTemp === '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
@@ -129,7 +129,7 @@ angular.module('budget.controllers', [])
                     text: '<b>Confirmer</b>',
                     type: 'button-positive',
                     onTap: function (e) {
-                        if ($scope.data.valeurJTemp == '') {
+                        if ($scope.data.valeurJTemp === '') {
                             //don't allow the user to close unless he enters anumber
                             e.preventDefault();
                         } else {
@@ -154,7 +154,7 @@ angular.module('budget.controllers', [])
                     text: '<b>Confirmer</b>',
                     type: 'button-positive',
                     onTap: function (e) {
-                        if ($scope.data.valeurCTemp == '') {
+                        if ($scope.data.valeurCTemp === '') {
                             //don't allow the user to close unless he enters anumber
                             e.preventDefault();
                         } else {
@@ -192,7 +192,7 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if ($scope.data.valeurJTemp == '') {
+                            if ($scope.data.valeurJTemp === '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
@@ -217,7 +217,7 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if ($scope.data.valeurCTemp == '') {
+                            if ($scope.data.valeurCTemp === '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
@@ -255,7 +255,7 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if ($scope.data.valeurJTemp == '') {
+                            if ($scope.data.valeurJTemp === '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
@@ -280,7 +280,7 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if ($scope.data.valeurCTemp == '') {
+                            if ($scope.data.valeurCTemp === '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
@@ -295,6 +295,69 @@ angular.module('budget.controllers', [])
         };
         $scope.data.calculPeda = function(){
             return Peda.getTotal();
+        };
+    })
+
+    .controller('ActivitesCtrl', function($scope, $ionicPopup, Activite, Activites) {
+        $scope.data = {
+            'valeurJour': Activites.getMontantjour(),
+            'valeurChoisie': Activites.getMontantChoisi(),
+            'choice': Activites.getMethode()
+        };
+
+        $scope.popupJour = function () {
+            $scope.data.valeurJTemp = Activites.getMontantjour();
+            $ionicPopup.show({
+                template: '<input type="number" ng-model="data.valeurJTemp">',
+                title: 'Montant par participant',
+                subTitle: "En fonction du nombre d'activites",
+                scope: $scope,
+                buttons: [
+                    {text: 'Annuler'},
+                    {
+                        text: '<b>Confirmer</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            if ($scope.data.valeurJTemp === '') {
+                                //don't allow the user to close unless he enters anumber
+                                e.preventDefault();
+                            } else {
+                                Activites.setMontantJour($scope.data.valeurJTemp);
+                                $scope.data.valeurJour = Activites.getMontantjour();
+                                Activites.setMethode('A');
+                            }
+                        }
+                    }
+                ]
+            });
+        };
+        $scope.popupChoisi = function () {
+            $scope.data.valeurCTemp = Activites.getMontantChoisi();
+            $ionicPopup.show({
+                template: '<input type="number" ng-model="data.valeurCTemp">',
+                title: 'Choisir un montant',
+                scope: $scope,
+                buttons: [
+                    {text: 'Annuler'},
+                    {
+                        text: '<b>Confirmer</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            if ($scope.data.valeurCTemp === '') {
+                                //don't allow the user to close unless he enters anumber
+                                e.preventDefault();
+                            } else {
+                                Activites.setMontantChoisi($scope.data.valeurCTemp);
+                                $scope.data.valeurChoisie = Activites.getMontantChoisi();
+                                Activites.setMethode('B');
+                            }
+                        }
+                    }
+                ]
+            });
+        };
+        $scope.data.calculActivites = function(){
+            return Activites.getTotal();
         };
     })
 
@@ -318,7 +381,7 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if ($scope.data.valeurJTemp == '') {
+                            if ($scope.data.valeurJTemp === '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
@@ -343,7 +406,7 @@ angular.module('budget.controllers', [])
                         text: '<b>Confirmer</b>',
                         type: 'button-positive',
                         onTap: function (e) {
-                            if ($scope.data.valeurCTemp == '') {
+                            if ($scope.data.valeurCTemp === '') {
                                 //don't allow the user to close unless he enters anumber
                                 e.preventDefault();
                             } else {
