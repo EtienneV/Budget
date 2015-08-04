@@ -465,27 +465,28 @@ angular.module('budget.controllers', [])
 
         $scope.data = {};
 
-        $scope.data.tab_autres = $scope.autres.getAutres();
+        $scope.tab_autres = $scope.autres.getAutres();
 
-        $scope.data.alert = function(){
-            alert("hello");
-        };
-
-        $scope.getScope = function () {
-            return $scope;
-        };
-
-        $scope.data.supprimer = function(id) {
+        $scope.supprimer = function(id) {
             //$scope.autres.supprimer(id);
-            $scope.data.tab_autres.splice(0, id);
+            $scope.tab_autres.splice(id, 1);
         };
 
         $scope.data.rafraichirCout = function(id){
         };
     })
     
-.controller('ResumeCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('ResumeCtrl', function($scope, Activite, Budget) {
+
+        $scope.data = {};
+
+        $scope.activite = Activite;
+
+        $scope.budget = Budget;
+
+        $scope.data.getNom = function(){
+            if($scope.activite.getNom() == '') return 'Nouvelle activite';
+            else return $scope.activite.getNom();
+        };
+
 });

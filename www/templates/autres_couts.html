@@ -1,14 +1,21 @@
 <ion-view view-title="Autres">
+
     <ion-content class="padding">
         <h3>Autres dépenses</h3>
 
-        <div class="list card" ng-repeat="ligne in autres.getAutres()">
-            <label class="item item-input">
-                <span class="input-label">{{ligne.nom}} : </span>
-                <input type="number" ng-model="data.tab_autres[ligne.id].cout" ng-change="data.rafraichirCout(ligne.id)"/>
-                <button class="button icon ion-trash-a button-clear button-assertive" ng-click="$parent.data.alert()"></button>
-            </label>
+        <ion-toggle ng-model="data.shouldShowDelete">
+            Supprimer des items
+        </ion-toggle>
 
-        </div>
+        <ion-list show-delete="data.shouldShowDelete" ng-repeat="ligne in tab_autres">
+            <ion-item>
+                <ion-delete-button class="ion-trash-a" ng-click="supprimer($index)"></ion-delete-button>
+                {{ligne.id}}
+                <input type="text" ng-model="tab_autres[ligne.id].nom"/>
+                <input type="number" ng-model="tab_autres[ligne.id].cout"/>
+            </ion-item>
+        </ion-list>
+        {{data.tab_autres}}
+
     </ion-content>
 </ion-view>

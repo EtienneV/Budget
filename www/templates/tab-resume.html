@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-nav-title ng-bind="data.getNom()"></ion-nav-title>
+    <ion-content class="padding">
+
+        <h3 ng-bind="data.getNom()"></h3>
+
+        <div class="list card">
+            <div class="item item-divider">Infos</div>
+
+            <a href="#/tab/infos" class="item">
+                {{data.getNom()}} de {{activite.getDuree()}} jours, avec {{activite.getNbJeunes()}} jeunes et {{activite.getNbChefs()}} chefs.
+            </a>
+        </div>
+
+        <div class="list card">
+            <div class="item item-divider">Budget</div>
+
+            <a href="#/tab/budget" class="item">
+                Dépenses : {{budget.getTotal()}}€
+            </a>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -496,7 +496,7 @@ angular.module('budget.services', [])
         };
 
         var supprimer = function(id){
-            autres.splice(0, id);
+            autres.splice(id, 1);
         };
 
         return {

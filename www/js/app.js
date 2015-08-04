@@ -151,6 +151,6 @@ angular.module('budget', ['ionic', 'budget.controllers', 'budget.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/infos');
+  $urlRouterProvider.otherwise('/tab/resume');
 
 });
