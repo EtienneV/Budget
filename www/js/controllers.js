@@ -489,4 +489,11 @@ angular.module('budget.controllers', [])
             else return $scope.activite.getNom();
         };
 
-});
+})
+
+    .controller('RecettesCtrl', function($scope, Activite, Recettes) {
+
+        $scope.data = {};
+
+        $scope.recettes = Recettes;
+    });

@@ -148,7 +148,18 @@ angular.module('budget', ['ionic', 'budget.controllers', 'budget.services'])
         controller: 'ResumeCtrl'
       }
     }
-  });
+
+  })
+
+      .state('tab.recettes', {
+          url: '/recettes',
+          views: {
+              'tab-recettes': {
+                  templateUrl: 'templates/tab-recettes.html',
+                  controller: 'RecettesCtrl'
+              }
+          }
+      });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/resume');
